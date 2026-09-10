@@ -11,6 +11,19 @@ metadata:
 
 Produce MATLAB code that is correct by construction and supported by evidence. Treat plausible-looking output as insufficient.
 
+This skill also distills the fundamentals taught in *MATLAB: An Introduction with Applications* (6th ed., Amos Gilat): arrays as MATLAB's core data structure, vector vs. matrix operations, script files, programming flow control, user-defined functions, and numerical-analysis applications. The book's per-chapter knowledge lives in `chapters/`; quick decision guides are in `cheatsheet.md`, techniques in `patterns.md`, and terms in `glossary.md`.
+
+<!-- argument-hint: [topic, framework name, or chapter number] -->
+
+## How to Use This Skill
+
+- **Without arguments** — load core frameworks for reference
+- **With a topic** — ask about `arrays`, `plotting`, `root-finding`, `ODEs`, `symbolic`, or any indexed topic; I find and read the relevant chapter
+- **With a chapter** — ask for `ch05` or `ch09`; I load that specific chapter file
+- **Browse** — ask "what chapters do you have?" to see the full index
+
+When you ask about a topic not covered in Core Frameworks below, I will read the relevant chapter file before answering.
+
 ## Non-negotiable rules
 
 1. Reconstruct the mathematical and software contract before editing code.
@@ -215,3 +228,69 @@ Finish MATLAB work with:
 - Remaining limitations, toolbox requirements, or unverified behaviors.
 
 If results are not execution-validated, do not use phrases such as “fully working,” “correct,” or “production ready.”
+
+## Core Frameworks & Mental Models
+<!-- From Gilat, MATLAB: An Introduction with Applications, 6th ed. -->
+- **Array-first mindset**: every value — including scalars — is an array. Use `zeros`/`ones`/`eye` to preallocate; never grow arrays in loops (Ch 2).
+- **Operator discipline**: `*` = matrix product, `.*` = element-wise; `A\b` solves systems (avoid `inv`); `'` conjugates, `.'` doesn't. Pick the operator from the math, not convenience (Ch 3).
+- **Workspace model**: Command Window and script files share one workspace; function files (Ch 7) use a private workspace. Audit with `whos` before trusting any variable (Ch 1, Ch 4).
+- **Script vs. function files**: scripts run top-to-bottom in the shared workspace; function files are reusable, independently testable building blocks with declared inputs/outputs (Ch 4, Ch 7).
+- **Flow control**: relational + logical operators drive `if`/`switch`/`for`/`while`; use logical masks (`v(v > t)`) instead of filtering loops; bound every `while` with a max iteration (Ch 6).
+- **Function-handle solvers**: `fzero`, `fminbnd`, `integral`, `ode45` take a function (string, handle, or anonymous). Handles are preferred; strings can't reference predefined variables (Ch 7.9, Ch 9).
+- **Root-finding**: `fzero` finds crossings only; bracket with `fplot` first; check the residual `[x, fval]` (Ch 9.1).
+- **Polynomial toolkit**: coefficient vector = highest power first, zeros included; `polyval`/`roots`/`polyfit`/`polyder` (Ch 8).
+- **Interpolation vs. fitting**: `interp1` passes through points (`'pchip'` for monotone data); `polyfit` models the trend with the smallest degree that fits (Ch 8).
+- **Surface pipeline**: `meshgrid` → element-wise Z → `mesh`/`surf`; grid density controls resolution (Ch 10).
+- **Symbolic math**: `syms`/`sym` create exact symbolic objects; `solve`, `diff`, `int`, `dsolve`; `subs` bridges to numerical code (Ch 11).
+
+## Chapter Index
+
+| # | Title | Key Frameworks |
+|---|-------|----------------|
+| [ch01](chapters/ch01-starting-with-matlab.md) | Starting with MATLAB | Calculator vs. script workflow, workspace model, display formats |
+| [ch02](chapters/ch02-creating-arrays.md) | Creating Arrays | Vector/matrix construction, `zeros`/`ones`/`eye`, `linspace` |
+| [ch03](chapters/ch03-math-operations-with-arrays.md) | Mathematical Operations with Arrays | Matrix vs. element-wise, `A\b`, transpose choice |
+| [ch04](chapters/ch04-script-files-and-data.md) | Script Files and Managing Data | Three input modes, `save`/`load`, `disp`/`fprintf`, `whos` |
+| [ch05](chapters/ch05-two-dimensional-plots.md) | Two-Dimensional Plots | `plot` specifiers, `hold on`+`legend`, semi-log/log-log, `subplot` |
+| [ch06](chapters/ch06-programming-in-matlab.md) | Programming in MATLAB | Relational/logical operators, `if`/`switch`/`for`/`while`, logical masks |
+| [ch07](chapters/ch07-user-defined-functions.md) | User-Defined Functions | Function file anatomy, local workspace, anonymous functions, subfunctions, `arguments` |
+| [ch08](chapters/ch08-polynomials-curve-fitting.md) | Polynomials, Curve Fitting, Interpolation | Coefficient-vector convention, `polyval`/`roots`/`polyfit`, `interp1` |
+| [ch09](chapters/ch09-numerical-analysis-applications.md) | Numerical Analysis | `fzero` bracketing, `fminbnd`, `integral`, `ode45` state ordering |
+| [ch10](chapters/ch10-three-dimensional-plots.md) | Three-Dimensional Plots | `meshgrid` pipeline, `mesh`/`surf`, `plot3`, camera control |
+| [ch11](chapters/ch11-symbolic-math.md) | Symbolic Math | `syms`/`sym`, `solve`/`diff`/`int`/`dsolve`, `subs` |
+
+## Topic Index
+- **`A\b` / left division** → ch03
+- **`arguments` block** → ch07
+- **`clear` / `who` / `whos`** → ch01, ch04
+- **`csvread` / `importdata`** → ch04
+- **`fzero`** → ch09
+- **`fminbnd` / `fminunc`** → ch09
+- **`integral` / `quad`** → ch09
+- **`interp1` / interpolation** → ch08
+- **`linspace` / `:`** → ch02
+- **`meshgrid` / surface plots** → ch10
+- **`ode45` / ODEs** → ch09
+- **`polyfit` / `polyval` / `roots`** → ch08
+- **`sym` / `syms` / symbolic** → ch11
+- **`zeros` / preallocation** → ch02
+- **arrays / vectors / matrices** → ch02, ch03
+- **bracketing roots** → ch09
+- **curve fitting** → ch08
+- **element-wise vs. matrix ops** → ch03
+- **flow control / loops / conditionals** → ch06
+- **function files / anonymous functions** → ch07
+- **interpolation** → ch08
+- **numerical integration** → ch09
+- **polynomials** → ch08
+- **script files / workspace** → ch01, ch04
+- **symbolic math** → ch11
+- **tolerance-based assertions** → ch09 (repo SKILL.md)
+
+## Supporting Files
+- [glossary.md](glossary.md) — all key terms with chapter references
+- [patterns.md](patterns.md) — concrete techniques and decision patterns
+- [cheatsheet.md](cheatsheet.md) — quick reference tables and decision guides
+
+## Scope & Limits
+This skill covers MATLAB fundamentals (Gilat 6th ed.) plus the repo's engineering-rigor layer. For domain-specific MATLAB work (medical imaging, deep learning, wavelets), pair with the corresponding domain skills. Symbolic derivations that will not become MATLAB code are out of scope.
