@@ -1,6 +1,6 @@
 ---
 name: matlab-engineering
-description: Design, write, debug, review, and validate nontrivial MATLAB scripts, functions, simulations, numerical algorithms, control models, signal processing, optimization, and aerospace engineering code. Use whenever MATLAB or Simulink code must be mathematically and numerically correct, especially for complex multi-file work. Do not use for Python-only or symbolic derivations that will not become MATLAB code.
+description: Design, write, debug, review, and validate nontrivial MATLAB scripts, functions, simulations, numerical algorithms, control models, signal processing, optimization, and aerospace engineering code. Use when MATLAB or Simulink work must be mathematically and numerically correct, especially for complex or multi-file tasks. Do not use for Python-only work or symbolic derivations that will not become MATLAB code.
 license: MIT
 metadata:
   audience: engineers-and-researchers
@@ -11,18 +11,29 @@ metadata:
 
 Produce MATLAB code that is correct by construction and supported by evidence. Treat plausible-looking output as insufficient.
 
-This skill also distills the fundamentals taught in *MATLAB: An Introduction with Applications* (6th ed., Amos Gilat): arrays as MATLAB's core data structure, vector vs. matrix operations, script files, programming flow control, user-defined functions, and numerical-analysis applications. The book's per-chapter knowledge lives in `chapters/`; quick decision guides are in `cheatsheet.md`, techniques in `patterns.md`, and terms in `glossary.md`.
+This skill also distills the fundamentals taught in *MATLAB: An Introduction with Applications* (6th ed., Amos Gilat): arrays as MATLAB's core data structure, vector vs. matrix operations, script files, programming flow control, user-defined functions, and numerical-analysis applications. Per-chapter knowledge lives in `chapters/`; quick decision guides are in `cheatsheet.md`, techniques in `patterns.md`, and terms in `glossary.md`.
 
 <!-- argument-hint: [topic, framework name, or chapter number] -->
 
-## How to Use This Skill
+## Portable operation
 
-- **Without arguments** — load core frameworks for reference
-- **With a topic** — ask about `arrays`, `plotting`, `root-finding`, `ODEs`, `symbolic`, or any indexed topic; I find and read the relevant chapter
-- **With a chapter** — ask for `ch05` or `ch09`; I load that specific chapter file
-- **Browse** — ask "what chapters do you have?" to see the full index
+These instructions are host-neutral. Use the current agent's available filesystem, search, shell, documentation, and test capabilities; do not assume a particular vendor, tool name, or UI. Preserve normal authorization boundaries before external or destructive actions.
 
-When you ask about a topic not covered in Core Frameworks below, I will read the relevant chapter file before answering.
+Resolve every relative link from the directory containing this `SKILL.md`. Load supporting material progressively:
+
+- For a named chapter such as `ch05` or `ch09`, read only that chapter file.
+- For a topic outside the core guidance, locate the matching chapter in the index and read it before answering.
+- Read `cheatsheet.md` for fast operator or solver choices, `patterns.md` for reusable techniques, and `glossary.md` when terminology is unclear.
+- Do not load all references by default.
+
+## How to use this skill
+
+- **Without arguments** — apply the core engineering workflow.
+- **With a topic** — for `arrays`, `plotting`, `root-finding`, `ODEs`, `symbolic`, or another indexed topic, read the relevant chapter.
+- **With a chapter** — for `ch05` or `ch09`, read that specific chapter file.
+- **Browse** — when asked what is covered, show the chapter index.
+
+For a topic not covered in Core Frameworks below, read the relevant chapter file before answering.
 
 ## Non-negotiable rules
 
